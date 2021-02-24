@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>C3-3库存减少逻辑</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/c3-3库存减少逻辑/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="data/document.js"></script>
+    <script src="files/c3-3库存减少逻辑/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5004" class="ax_default _文本段落">
+        <div id="u5004_div" class=""></div>
+        <div id="u5004_text" class="text ">
+          <p><span style="color:#333333;"><br></span></p><p><span style="color:#333333;"><br></span></p><p><span style="color:#333333;">总库存：东市商户仓库商品的实际库存，通过商户的添加商品设置；</span></p><p><span style="color:#333333;"><br></span></p><p><span style="color:#333333;">冻结库存：提交订单临时占用的库存，冻结库存可以根据订单取消或确认收货/取货等情况进行释放；</span></p><p><span style="color:#333333;"><br></span></p><p><span style="color:#333333;">可用库存：总库存-冻结库存，东市优鲜消费端小程序显示的库存且用户可下单的最大数量。</span></p><p><span style="color:#333333;"><br></span></p><p><span style="color:#D9001B;">注意：以上库存定义是针对规格维度</span></p><p><span style="color:#333333;"><br></span></p><p><span style="color:#333333;"><br></span></p><p><span style="color:#333333;"><br></span></p><p><span style="color:#333333;"><br></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5005" class="ax_default _文本段落">
+        <div id="u5005_div" class=""></div>
+        <div id="u5005_text" class="text ">
+          <p><span>&nbsp;触发发库存改变的关键节点：</span></p><p><span>提交订单</span></p><p><span>取消订单</span></p><p><span>确认收货/取货</span></p><p><span>订单售后</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5006" class="ax_default _二级标题">
+        <div id="u5006_div" class=""></div>
+        <div id="u5006_text" class="text ">
+          <p><span>一、库存定义：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5007" class="ax_default _二级标题">
+        <div id="u5007_div" class=""></div>
+        <div id="u5007_text" class="text ">
+          <p><span> 二、库存逻辑：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u5008" class="ax_default flow_shape">
+        <img id="u5008_img" class="img " src="images/c3-3库存减少逻辑/u5008.svg"/>
+        <div id="u5008_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5009" class="ax_default _文本段落">
+        <div id="u5009_div" class=""></div>
+        <div id="u5009_text" class="text ">
+          <p><span>消费者</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u5010" class="ax_default flow_shape">
+        <img id="u5010_img" class="img " src="images/c3-3库存减少逻辑/u5008.svg"/>
+        <div id="u5010_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5011" class="ax_default _文本段落">
+        <div id="u5011_div" class=""></div>
+        <div id="u5011_text" class="text ">
+          <p><span>商家</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5012" class="ax_default flow_shape">
+        <div id="u5012_div" class=""></div>
+        <div id="u5012_text" class="text ">
+          <p><span>提交订单（70件商品）</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5013" class="ax_default flow_shape">
+        <img id="u5013_img" class="img " src="images/c3-3库存减少逻辑/u5013.svg"/>
+        <div id="u5013_text" class="text ">
+          <p><span>商家总库存为100</span></p><p><span>冻结库存+70</span></p><p><span>可售库存-70</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5014" class="ax_default _连接线">
+        <img id="u5014_seg0" class="img " src="images/c3-3库存减少逻辑/u5014_seg0.svg" alt="u5014_seg0"/>
+        <img id="u5014_seg1" class="img " src="images/c3-3库存减少逻辑/u5014_seg1.svg" alt="u5014_seg1"/>
+        <img id="u5014_seg2" class="img " src="images/c3-3库存减少逻辑/u5014_seg2.svg" alt="u5014_seg2"/>
+        <div id="u5014_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (菱形) -->
+      <div id="u5015" class="ax_default flow_shape">
+        <img id="u5015_img" class="img " src="images/c3-3库存减少逻辑/u5015.svg"/>
+        <div id="u5015_text" class="text ">
+          <p><span>可用库存是否&gt;=1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5016" class="ax_default _连接线">
+        <img id="u5016_seg0" class="img " src="images/c3-3库存减少逻辑/u5016_seg0.svg" alt="u5016_seg0"/>
+        <img id="u5016_seg1" class="img " src="images/c3-3库存减少逻辑/u5016_seg1.svg" alt="u5016_seg1"/>
+        <img id="u5016_seg2" class="img " src="images/c3-3库存减少逻辑/u5016_seg2.svg" alt="u5016_seg2"/>
+        <div id="u5016_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5017" class="ax_default flow_shape">
+        <div id="u5017_div" class=""></div>
+        <div id="u5017_text" class="text ">
+          <p><span>提示库存不足</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5018" class="ax_default _连接线">
+        <img id="u5018_seg0" class="img " src="images/c3-3库存减少逻辑/u5018_seg0.svg" alt="u5018_seg0"/>
+        <img id="u5018_seg1" class="img " src="images/c3-3库存减少逻辑/u5018_seg1.svg" alt="u5018_seg1"/>
+        <img id="u5018_seg2" class="img " src="images/c3-3库存减少逻辑/u5018_seg2.svg" alt="u5018_seg2"/>
+        <div id="u5018_text" class="text ">
+          <p><span>否（有其他人提交订单了）</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5019" class="ax_default flow_shape">
+        <div id="u5019_div" class=""></div>
+        <div id="u5019_text" class="text ">
+          <p><span>支付成功</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5020" class="ax_default _连接线">
+        <img id="u5020_seg0" class="img " src="images/c3-3库存减少逻辑/u5020_seg0.svg" alt="u5020_seg0"/>
+        <img id="u5020_seg1" class="img " src="images/c3-3库存减少逻辑/u5020_seg1.svg" alt="u5020_seg1"/>
+        <img id="u5020_seg2" class="img " src="images/c3-3库存减少逻辑/u5020_seg2.svg" alt="u5020_seg2"/>
+        <div id="u5020_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5021" class="ax_default flow_shape">
+        <div id="u5021_div" class=""></div>
+        <div id="u5021_text" class="text ">
+          <p><span>商家接单</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5022" class="ax_default _连接线">
+        <img id="u5022_seg0" class="img " src="images/c3-3库存减少逻辑/u5022_seg0.svg" alt="u5022_seg0"/>
+        <img id="u5022_seg1" class="img " src="images/c3-3库存减少逻辑/u5022_seg1.svg" alt="u5022_seg1"/>
+        <img id="u5022_seg2" class="img " src="images/c3-3库存减少逻辑/u5022_seg2.svg" alt="u5022_seg2"/>
+        <div id="u5022_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5023" class="ax_default flow_shape">
+        <div id="u5023_div" class=""></div>
+        <div id="u5023_text" class="text ">
+          <p><span>接单成功</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5024" class="ax_default _连接线">
+        <img id="u5024_seg0" class="img " src="images/c3-3库存减少逻辑/u5024_seg0.svg" alt="u5024_seg0"/>
+        <img id="u5024_seg1" class="img " src="images/c3-3库存减少逻辑/u5024_seg1.svg" alt="u5024_seg1"/>
+        <img id="u5024_seg2" class="img " src="images/c3-3库存减少逻辑/u5024_seg2.svg" alt="u5024_seg2"/>
+        <div id="u5024_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5025" class="ax_default _文本段落">
+        <div id="u5025_div" class=""></div>
+        <div id="u5025_text" class="text ">
+          <p><span>总库存为30</span></p><p><span>冻结库存-70</span></p><p><span>可售库存+0</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5026" class="ax_default _连接线">
+        <img id="u5026_seg0" class="img " src="images/c3-3库存减少逻辑/u5026_seg0.svg" alt="u5026_seg0"/>
+        <img id="u5026_seg1" class="img " src="images/c3-3库存减少逻辑/u5026_seg1.svg" alt="u5026_seg1"/>
+        <img id="u5026_seg2" class="img " src="images/c3-3库存减少逻辑/u5026_seg2.svg" alt="u5026_seg2"/>
+        <div id="u5026_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5027" class="ax_default flow_shape">
+        <div id="u5027_div" class=""></div>
+        <div id="u5027_text" class="text ">
+          <p><span>收货成功</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (菱形) -->
+      <div id="u5028" class="ax_default flow_shape">
+        <img id="u5028_img" class="img " src="images/c3-3库存减少逻辑/u5015.svg"/>
+        <div id="u5028_text" class="text ">
+          <p><span>消费者是否取消订单</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5029" class="ax_default _连接线">
+        <img id="u5029_seg0" class="img " src="images/c3-3库存减少逻辑/u5029_seg0.svg" alt="u5029_seg0"/>
+        <img id="u5029_seg1" class="img " src="images/c3-3库存减少逻辑/u5029_seg1.svg" alt="u5029_seg1"/>
+        <img id="u5029_seg2" class="img " src="images/c3-3库存减少逻辑/u5029_seg2.svg" alt="u5029_seg2"/>
+        <img id="u5029_seg3" class="img " src="images/c3-3库存减少逻辑/u5029_seg3.svg" alt="u5029_seg3"/>
+        <img id="u5029_seg4" class="img " src="images/c3-3库存减少逻辑/u5029_seg4.svg" alt="u5029_seg4"/>
+        <div id="u5029_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5030" class="ax_default _连接线">
+        <img id="u5030_seg0" class="img " src="images/c3-3库存减少逻辑/u5030_seg0.svg" alt="u5030_seg0"/>
+        <img id="u5030_seg1" class="img " src="images/c3-3库存减少逻辑/u5030_seg1.svg" alt="u5030_seg1"/>
+        <img id="u5030_seg2" class="img " src="images/c3-3库存减少逻辑/u5030_seg2.svg" alt="u5030_seg2"/>
+        <div id="u5030_text" class="text ">
+          <p><span>否</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5031" class="ax_default _连接线">
+        <img id="u5031_seg0" class="img " src="images/c3-3库存减少逻辑/u5031_seg0.svg" alt="u5031_seg0"/>
+        <img id="u5031_seg1" class="img " src="images/c3-3库存减少逻辑/u5031_seg1.svg" alt="u5031_seg1"/>
+        <img id="u5031_seg2" class="img " src="images/c3-3库存减少逻辑/u5031_seg2.svg" alt="u5031_seg2"/>
+        <img id="u5031_seg3" class="img " src="images/c3-3库存减少逻辑/u5031_seg3.svg" alt="u5031_seg3"/>
+        <img id="u5031_seg4" class="img " src="images/c3-3库存减少逻辑/u5031_seg4.svg" alt="u5031_seg4"/>
+        <div id="u5031_text" class="text ">
+          <p><span>是</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5032" class="ax_default _文本段落">
+        <div id="u5032_div" class=""></div>
+        <div id="u5032_text" class="text ">
+          <p style="text-align:left;"><span>总库存为100</span></p><p style="text-align:left;"><span>冻结库存+0</span></p><p style="text-align:center;"><span>可售库存+70</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5033" class="ax_default flow_shape">
+        <div id="u5033_div" class=""></div>
+        <div id="u5033_text" class="text ">
+          <p><span>结束</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5034" class="ax_default _连接线">
+        <img id="u5034_seg0" class="img " src="images/c3-3库存减少逻辑/u5034_seg0.svg" alt="u5034_seg0"/>
+        <img id="u5034_seg1" class="img " src="images/c3-3库存减少逻辑/u5034_seg1.svg" alt="u5034_seg1"/>
+        <img id="u5034_seg2" class="img " src="images/c3-3库存减少逻辑/u5034_seg2.svg" alt="u5034_seg2"/>
+        <div id="u5034_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5035" class="ax_default _文本段落">
+        <div id="u5035_div" class=""></div>
+        <div id="u5035_text" class="text ">
+          <p><span>商家新增字段显示：总库存，冻结库存，可售库存，商家可以修改总库存</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5036" class="ax_default _文本段落">
+        <div id="u5036_div" class=""></div>
+        <div id="u5036_text" class="text ">
+          <p><span>总库存为30</span></p><p><span>冻结库存+0</span></p><p><span>可售库存+0</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (连接线) -->
+      <div id="u5037" class="ax_default _连接线">
+        <img id="u5037_seg0" class="img " src="images/c3-3库存减少逻辑/u5037_seg0.svg" alt="u5037_seg0"/>
+        <img id="u5037_seg1" class="img " src="images/c3-3库存减少逻辑/u5037_seg1.svg" alt="u5037_seg1"/>
+        <img id="u5037_seg2" class="img " src="images/c3-3库存减少逻辑/u5037_seg2.svg" alt="u5037_seg2"/>
+        <div id="u5037_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <script src="resources/scripts/axure/ios.js"></script>
+  </body>
+</html>

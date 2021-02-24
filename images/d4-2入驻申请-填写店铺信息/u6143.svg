@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="46px" height="43px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask fill="white" id="clip57">
+      <path d="M 1111 1149  C 1103.23 1149  1097 1142.77  1097 1135  L 1097 1120  C 1097 1112.23  1103.23 1106  1111 1106  L 1129 1106  C 1136.77 1106  1143 1112.23  1143 1120  L 1143 1135  C 1143 1142.77  1136.77 1149  1129 1149  " fill-rule="evenodd" />
+    </mask>
+  </defs>
+  <g transform="matrix(1 0 0 1 -1097 -1106 )">
+    <path d="M 1097 1106  L 1143 1106  L 1143 1149  L 1097 1149  L 1097 1106  " fill-rule="nonzero" fill="#cccccc" stroke="none" mask="url(#clip57)" />
+    <path d="M 1100 1109  L 1140 1109  L 1140 1146  L 1100 1146  L 1100 1109  " fill-rule="nonzero" fill="#ffffff" stroke="none" mask="url(#clip57)" />
+    <path d="M 1124.145 1118.9  C 1122.339 1118.9  1120.92 1117.481  1120.92 1115.675  C 1120.92 1113.869  1122.339 1112.45  1124.145 1112.45  C 1125.951 1112.45  1127.37 1113.869  1127.37 1115.675  C 1127.37 1117.481  1125.951 1118.9  1124.145 1118.9  " fill-rule="nonzero" fill="#cccccc" stroke="none" mask="url(#clip57)" />
+    <path d="M 1101 1145  L 1101 1125.75  L 1110.5 1117  L 1123.8 1125.36956521739  L 1131.4 1122.25  L 1139 1125.36956521739  L 1139 1145  L 1101 1145  " fill-rule="nonzero" fill="#169bd5" stroke="none" mask="url(#clip57)" />
+  </g>
+</svg>
